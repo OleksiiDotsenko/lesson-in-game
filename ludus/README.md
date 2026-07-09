@@ -1,4 +1,7 @@
-# Ludus — the Lesson-to-Game Engine
+# Ludus — the engine inside Lesson in Game
+
+*This is the technical README for the plugin and engine. For the friendly
+project overview, start at the [repository front page](../README.md).*
 
 > *A teacher describes a lesson; the frameworks design the game; the classroom
 > plays it; the data teaches the teacher what to do next — and no one has to read
