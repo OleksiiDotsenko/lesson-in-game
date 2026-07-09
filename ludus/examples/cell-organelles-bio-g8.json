@@ -1,0 +1,26 @@
+{
+  "packId": "cell-organelles-bio-g8",
+  "title": "Cell organelles review",
+  "subject": "Biology",
+  "grade": 8,
+  "language": "en",
+  "objective": "Recall which organelle performs each cell function",
+  "bloom": "remember",
+  "primitives": ["recall"],
+  "reviewStatus": "approved",
+  "approvedAt": "2026-07-09T09:00:00.000Z",
+  "createdAt": "2026-07-09T08:40:00.000Z",
+  "reflectionPrompt": "Which organelle was hardest to remember — and what will help you next time?",
+  "items": [
+    { "id": "o1", "primitive": "recall", "prompt": "Which organelle releases most of the cell's energy (ATP)?", "options": ["Mitochondrion", "Ribosome", "Golgi apparatus", "Vacuole"], "answer": 0, "difficulty": 1, "explanation": "Mitochondria carry out aerobic respiration, producing most of the cell's ATP.", "tags": ["energy"] },
+    { "id": "o2", "primitive": "recall", "prompt": "Where are proteins assembled?", "options": ["Lysosome", "Ribosome", "Nucleus", "Cell membrane"], "answer": 1, "difficulty": 1, "explanation": "Ribosomes read mRNA and join amino acids into proteins.", "tags": ["proteins"] },
+    { "id": "o3", "primitive": "recall", "prompt": "Which organelle stores the cell's DNA?", "options": ["Chloroplast", "Vacuole", "Nucleus", "Cytoplasm"], "answer": 2, "difficulty": 1, "explanation": "The nucleus holds the chromosomes and controls the cell's activities.", "tags": ["control"] },
+    { "id": "o4", "primitive": "recall", "prompt": "In a plant cell, where does photosynthesis happen?", "options": ["Mitochondrion", "Chloroplast", "Nucleus", "Ribosome"], "answer": 1, "difficulty": 2, "explanation": "Chloroplasts contain chlorophyll and capture light energy to make glucose.", "tags": ["energy", "plant"] },
+    { "id": "o5", "primitive": "recall", "prompt": "Which structure controls what enters and leaves the cell?", "options": ["Cell membrane", "Cell wall", "Golgi apparatus", "Nucleolus"], "answer": 0, "difficulty": 2, "explanation": "The cell (plasma) membrane is selectively permeable, regulating transport in and out.", "tags": ["control", "transport"] },
+    { "id": "o6", "primitive": "recall", "prompt": "Which organelle packages and ships proteins out of the cell?", "options": ["Lysosome", "Golgi apparatus", "Ribosome", "Vacuole"], "answer": 1, "difficulty": 3, "explanation": "The Golgi apparatus modifies, sorts and packages proteins for secretion.", "tags": ["proteins", "transport"] },
+    { "id": "o7", "primitive": "recall", "prompt": "What gives a plant cell its rigid shape?", "options": ["Cell membrane", "Vacuole", "Cell wall", "Cytoplasm"], "answer": 2, "difficulty": 2, "explanation": "The cellulose cell wall provides structural support and shape in plant cells.", "tags": ["plant", "structure"] },
+    { "id": "o8", "primitive": "recall", "prompt": "Which organelle contains enzymes that break down waste?", "options": ["Lysosome", "Ribosome", "Chloroplast", "Nucleus"], "answer": 0, "difficulty": 3, "explanation": "Lysosomes hold digestive enzymes that break down worn-out parts and waste.", "tags": ["waste"] },
+    { "id": "o9", "primitive": "recall", "prompt": "The jelly-like fluid where organelles sit is the…", "options": ["Cytoplasm", "Vacuole", "Nucleoplasm", "Membrane"], "answer": 0, "difficulty": 2, "explanation": "Cytoplasm is the fluid that suspends the organelles and hosts many reactions.", "tags": ["structure"] },
+    { "id": "o10", "primitive": "recall", "prompt": "A large fluid-filled sac storing water and nutrients (big in plant cells) is the…", "options": ["Golgi apparatus", "Vacuole", "Lysosome", "Ribosome"], "answer": 1, "difficulty": 3, "explanation": "The vacuole stores water, nutrients and waste; in plant cells it is large and helps keep the cell firm.", "tags": ["plant", "storage"] }
+  ]
+}

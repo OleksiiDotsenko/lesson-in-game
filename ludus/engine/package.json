@@ -1,0 +1,17 @@
+{
+  "name": "ludus-engine",
+  "version": "0.1.0",
+  "description": "Teacher-hosted LAN classroom game engine (Ludus lesson-to-game). Local-first: student data never leaves the teacher's machine.",
+  "private": true,
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "test": "node test/smoke.js",
+    "setup": "node setup.js"
+  },
+  "dependencies": {
+    "express": "^4.19.0",
+    "qrcode": "^1.5.3",
+    "socket.io": "^4.7.0",
+    "socket.io-client": "^4.7.0"
+  }
+}

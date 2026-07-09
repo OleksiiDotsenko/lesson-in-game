@@ -1,0 +1,7 @@
+# dependencies
+node_modules/
+
+# local machine state
+.DS_Store
+*.log
+.claude/settings.local.json

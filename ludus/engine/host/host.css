@@ -1,0 +1,79 @@
+/* Shared styles for the two host views. Cast = the room's shared spectacle;
+   control = the teacher's private cockpit. */
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  background: #10131c; color: #f2f4fa;
+}
+.hidden { display: none !important; }
+.muted { color: #8b93a7; }
+
+/* ── cast ── */
+.cast { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; text-align: center; }
+.cast h1 { font-size: 2.6rem; margin: 0.2rem 0; }
+.cast .room-code { font-size: 5rem; letter-spacing: 0.3em; font-weight: 900; color: #60a5fa; margin: 0.5rem 0; }
+.cast .join-url { font-size: 1.6rem; color: #cbd5f5; }
+.cast img.qr { width: min(38vh, 320px); border-radius: 16px; margin: 1.2rem 0; background: #fff; padding: 8px; }
+.cast .roster { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; max-width: 70rem; margin-top: 1rem; }
+.cast .roster span { background: #1d2435; padding: 0.4rem 0.9rem; border-radius: 999px; font-size: 1.2rem; font-weight: 600; }
+.cast .roster span.off { opacity: 0.4; }
+
+.cast .q-prompt { font-size: 3rem; max-width: 60rem; line-height: 1.25; margin: 1rem 0 2rem; }
+.cast .countdown { font-size: 4.5rem; font-weight: 900; font-variant-numeric: tabular-nums; }
+.cast .countdown.low { color: #fb923c; }
+.cast .answered { font-size: 1.6rem; color: #8b93a7; margin-top: 0.6rem; }
+.cast .options-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 1rem; max-width: 64rem; width: 100%; }
+.cast .opt { background: #1d2435; border-radius: 14px; padding: 1rem 1.2rem; font-size: 1.7rem; text-align: left; border: 3px solid transparent; }
+.cast .opt .letter { color: #60a5fa; font-weight: 900; margin-right: 0.6rem; }
+.cast .opt.correct { border-color: #4ade80; background: #14301f; }
+.cast .opt .bar { display: block; height: 10px; background: #60a5fa; border-radius: 5px; margin-top: 0.5rem; }
+.cast .explanation { max-width: 56rem; font-size: 1.5rem; color: #cbd5f5; background: #1d2435; border-radius: 12px; padding: 1rem 1.4rem; margin-top: 1.4rem; }
+.cast .teams { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+.cast .team { border-radius: 16px; padding: 1rem 2rem; min-width: 14rem; font-size: 1.5rem; font-weight: 800; color: #fff; }
+.cast .team .score { display: block; font-size: 3rem; }
+.cast .phase-note { font-size: 1.6rem; color: #8b93a7; margin-top: 2rem; }
+.cast .buckets { display: flex; gap: 1rem; justify-content: center; margin-top: 1rem; flex-wrap: wrap; }
+.cast .bucket { background: #1d2435; border-radius: 12px; padding: 0.8rem 1.4rem; font-size: 1.4rem; }
+.cast .reflection-prompt { font-size: 2.4rem; max-width: 56rem; }
+
+/* ── control ── */
+.control { max-width: 72rem; margin: 0 auto; padding: 1rem 1.2rem 4rem; }
+.control h1 { font-size: 1.3rem; display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; }
+.badge { background: #1d2435; border-radius: 999px; padding: 0.25rem 0.9rem; font-size: 0.95rem; font-weight: 700; }
+.badge.phase { background: #2563eb; }
+.badge.preview { background: #b45309; }
+.controls { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 0.8rem 0 1.2rem; }
+.controls button {
+  background: #1d2435; color: #f2f4fa; border: 1px solid #39415a; border-radius: 10px;
+  padding: 0.6rem 1rem; font-size: 1rem; font-weight: 700; cursor: pointer; min-height: 44px;
+}
+.controls button.primary { background: #2563eb; border-color: #2563eb; }
+.controls button.danger { background: #7f1d1d; border-color: #7f1d1d; }
+.controls button:disabled { opacity: 0.35; cursor: default; }
+.grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1.2rem; }
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+.card { background: #171c2a; border: 1px solid #262e44; border-radius: 14px; padding: 1rem; }
+.card h2 { font-size: 1.02rem; margin: 0 0 0.7rem; color: #8b93a7; text-transform: uppercase; letter-spacing: 0.06em; }
+table { width: 100%; border-collapse: collapse; font-size: 0.98rem; }
+th, td { text-align: left; padding: 0.45rem 0.5rem; border-bottom: 1px solid #232a3f; }
+th { color: #8b93a7; font-size: 0.85rem; }
+tr.off td { opacity: 0.45; }
+.flag { background: #7f1d1d; border-radius: 6px; padding: 0.1rem 0.45rem; font-size: 0.8rem; margin-left: 0.3rem; }
+.flag.scaffold { background: #b45309; }
+.flag.pending { background: #39415a; }
+.dot { display: inline-block; width: 0.6rem; height: 0.6rem; border-radius: 50%; margin-right: 0.4rem; }
+.dot.on { background: #4ade80; } .dot.offd { background: #6b7280; }
+.acc-bar { background: #232a3f; border-radius: 5px; height: 9px; width: 90px; display: inline-block; vertical-align: middle; }
+.acc-bar i { display: block; height: 100%; border-radius: 5px; background: #60a5fa; }
+.kick { background: none; border: none; color: #f87171; cursor: pointer; font-size: 0.9rem; }
+.stat-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+.stat { background: #1d2435; border-radius: 10px; padding: 0.6rem 1rem; }
+.stat b { display: block; font-size: 1.4rem; }
+.round-preview { font-size: 1.05rem; }
+.round-preview .answer { color: #4ade80; font-weight: 700; }
+.reflections li { margin-bottom: 0.5rem; }
+#report-link { color: #60a5fa; word-break: break-all; }
+.login { max-width: 26rem; margin: 15vh auto; text-align: center; }
+.login input { width: 100%; font-size: 1.1rem; padding: 0.7rem; border-radius: 10px; border: 1px solid #39415a; background: #1d2435; color: #fff; margin: 0.8rem 0; }
+.login button { width: 100%; }

@@ -1,0 +1,13 @@
+{
+  "name": "ludus",
+  "version": "0.1.0",
+  "description": "The Lesson-to-Game Engine. A teacher describes a lesson in plain pedagogical language; Ludus designs a framework-grounded multiplayer classroom game, builds the content from the teacher's own material, runs it live over the room's Wi-Fi, and hands back a diagnostic report. Local-first and private — no cloud, no student accounts. Ukrainian and English supported.",
+  "author": { "name": "Ludus project" },
+  "keywords": ["education", "gamification", "classroom", "formative-assessment", "quiz", "multiplayer", "edtech", "teaching"],
+  "skills": [
+    "./skills/create-game",
+    "./skills/review-pack",
+    "./skills/run-session",
+    "./skills/game-report"
+  ]
+}

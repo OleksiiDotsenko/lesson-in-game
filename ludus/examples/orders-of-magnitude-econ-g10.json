@@ -1,0 +1,26 @@
+{
+  "packId": "orders-of-magnitude-econ-g10",
+  "title": "A feel for the numbers",
+  "subject": "Economics",
+  "grade": 10,
+  "language": "en",
+  "objective": "Estimate real-world economic magnitudes to within an order of magnitude",
+  "bloom": "apply",
+  "primitives": ["estimate"],
+  "reviewStatus": "approved",
+  "approvedAt": "2026-07-09T09:05:00.000Z",
+  "createdAt": "2026-07-09T08:50:00.000Z",
+  "reflectionPrompt": "Which number was furthest from your guess, and what threw your intuition off?",
+  "items": [
+    { "id": "m1", "primitive": "estimate", "prompt": "About how many people live in Ukraine? (millions, 2021)", "numericAnswer": 41, "tolerance": 5, "unit": "million", "min": 1, "max": 100, "difficulty": 1, "explanation": "Ukraine's population was roughly 41 million before 2022. Estimation trains a feel for scale, not exact recall.", "tags": ["population"] },
+    { "id": "m2", "primitive": "estimate", "prompt": "Roughly how many countries are in the world?", "numericAnswer": 195, "tolerance": 15, "unit": "countries", "min": 50, "max": 400, "difficulty": 2, "explanation": "There are 195 widely recognised sovereign states (193 UN members plus 2 observers).", "tags": ["geography"] },
+    { "id": "m3", "primitive": "estimate", "prompt": "About what share of an average household budget goes to food? (percent)", "numericAnswer": 30, "tolerance": 8, "unit": "%", "min": 0, "max": 100, "difficulty": 3, "explanation": "Food is often ~25–35% of spending; the poorer the household, the larger the share (Engel's law).", "tags": ["budget", "consumption"] },
+    { "id": "m4", "primitive": "estimate", "prompt": "How many zeros are in one billion (short scale)?", "numericAnswer": 9, "tolerance": 0.5, "unit": "zeros", "min": 0, "max": 20, "difficulty": 2, "explanation": "1 billion = 1,000,000,000 — nine zeros. Order-of-magnitude fluency starts with counting zeros.", "tags": ["scale"] },
+    { "id": "m5", "primitive": "estimate", "prompt": "Roughly how many hours per week is a standard full-time job?", "numericAnswer": 40, "tolerance": 4, "unit": "hours", "min": 0, "max": 100, "difficulty": 1, "explanation": "A standard full-time week is about 40 hours in many countries.", "tags": ["labour"] },
+    { "id": "m6", "primitive": "estimate", "prompt": "About what percent annual inflation is often a central-bank target?", "numericAnswer": 2, "tolerance": 1, "unit": "%", "min": 0, "max": 30, "difficulty": 3, "explanation": "Many central banks target around 2% inflation — low, positive and predictable.", "tags": ["inflation", "policy"] },
+    { "id": "m7", "primitive": "estimate", "prompt": "If a coffee costs 50 UAH and you buy one every school day, about how much per month? (UAH)", "numericAnswer": 1000, "tolerance": 150, "unit": "UAH", "min": 0, "max": 5000, "difficulty": 2, "explanation": "≈20 school days × 50 UAH ≈ 1000 UAH — small daily costs compound.", "tags": ["budget", "compounding"] },
+    { "id": "m8", "primitive": "estimate", "prompt": "Roughly what percent of the world's population uses the internet? (2023)", "numericAnswer": 65, "tolerance": 10, "unit": "%", "min": 0, "max": 100, "difficulty": 4, "explanation": "About two-thirds of humanity — ~65% — were online by 2023.", "tags": ["technology"] },
+    { "id": "m9", "primitive": "estimate", "prompt": "How many seconds are in an hour?", "numericAnswer": 3600, "tolerance": 100, "unit": "seconds", "min": 0, "max": 10000, "difficulty": 1, "explanation": "60 × 60 = 3600. A quick sanity-check magnitude everyone should own.", "tags": ["scale"] },
+    { "id": "m10", "primitive": "estimate", "prompt": "About how many times larger is a million than a thousand?", "numericAnswer": 1000, "tolerance": 100, "unit": "times", "min": 1, "max": 100000, "difficulty": 3, "explanation": "A million is a thousand thousands — 1000× bigger. Confusing these is a classic scale error.", "tags": ["scale"] }
+  ]
+}
