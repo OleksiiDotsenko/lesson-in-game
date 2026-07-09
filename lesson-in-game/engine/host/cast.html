@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lesson in Game — cast</title>
+  <link rel="stylesheet" href="/host-assets/host.css">
+</head>
+<body>
+  <main class="cast" id="cast">
+    <!-- Lobby -->
+    <section id="c-lobby">
+      <h1 id="c-title">Lesson in Game</h1>
+      <div class="room-code" id="c-code">·····</div>
+      <img class="qr" src="/qr.png" alt="QR code to join">
+      <div class="join-url" id="c-url"></div>
+      <div class="roster" id="c-roster"></div>
+    </section>
+
+    <!-- Active round -->
+    <section id="c-round" class="hidden">
+      <div class="countdown" id="c-count">–</div>
+      <h2 class="q-prompt" id="c-prompt"></h2>
+      <div class="options-grid" id="c-options"></div>
+      <div class="answered" id="c-answered"></div>
+    </section>
+
+    <!-- Review -->
+    <section id="c-review" class="hidden">
+      <h2 class="q-prompt" id="c-review-prompt"></h2>
+      <div class="options-grid" id="c-review-options"></div>
+      <div class="buckets hidden" id="c-buckets"></div>
+      <div class="explanation" id="c-explanation"></div>
+      <div class="teams" id="c-review-teams"></div>
+    </section>
+
+    <!-- Summary -->
+    <section id="c-summary" class="hidden">
+      <h1 id="c-summary-title">🏁</h1>
+      <div class="teams" id="c-summary-teams"></div>
+      <div class="phase-note" id="c-summary-note"></div>
+    </section>
+
+    <!-- Reflection -->
+    <section id="c-reflection" class="hidden">
+      <h2 class="reflection-prompt" id="c-reflection-prompt"></h2>
+      <div class="phase-note" id="c-reflection-count"></div>
+    </section>
+
+    <!-- Paused -->
+    <section id="c-paused" class="hidden">
+      <h1>⏸</h1>
+      <div class="phase-note">Paused</div>
+    </section>
+  </main>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/host-assets/cast.js"></script>
+</body>
+</html>

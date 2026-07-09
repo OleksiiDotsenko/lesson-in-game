@@ -54,19 +54,19 @@ You make only the decisions you already know how to make as a teacher. All the g
 ```bash
 git clone https://github.com/OleksiiDotsenko/lesson-in-game.git
 cd lesson-in-game
-node ludus/engine/setup.js     # one-time install (~1 minute, needs internet once)
+node lesson-in-game/engine/setup.js     # one-time install (~1 minute, needs internet once)
 ```
 
 Then open Claude Code in this folder and just talk to it like a colleague:
 
 > *"Make a game for my 8th-grade biology lesson tomorrow — students should be able to recall which organelle performs each cell function. 24 kids, most have phones, 20 minutes. Here are my notes: …"*
 
-It interviews you, drafts the questions, waits for your approval, and launches. Want to try it right now without writing anything? Three ready-made packs ship in [`ludus/examples/`](ludus/examples/) — including one in Ukrainian:
+It interviews you, drafts the questions, waits for your approval, and launches. Want to try it right now without writing anything? Three ready-made packs ship in [`lesson-in-game/examples/`](lesson-in-game/examples/) — including one in Ukrainian:
 
 ```bash
-cp ludus/examples/*.json ~/ludus/packs/
-node ~/ludus/engine/runner.js --pack cell-organelles-bio-g8 --preview   # watch bots play it
-node ~/ludus/engine/runner.js --pack cell-organelles-bio-g8             # go live in class
+cp lesson-in-game/examples/*.json ~/lesson-in-game/packs/
+node ~/lesson-in-game/engine/runner.js --pack cell-organelles-bio-g8 --preview   # watch bots play it
+node ~/lesson-in-game/engine/runner.js --pack cell-organelles-bio-g8             # go live in class
 ```
 
 ## 🎮 Game modes
@@ -94,8 +94,8 @@ Student answers **never leave the teacher's laptop**. There is no cloud, no stud
 
 | Path | What it is |
 |---|---|
-| [`ludus/`](ludus/README.md) | The working product: 4 Claude Code skills + the game engine ("Ludus" is the engine's codename) |
-| [`ludus/examples/`](ludus/examples/) | Three ready-to-play content packs (🇬🇧 biology, 🇬🇧 economics, 🇺🇦 біологія) |
+| [`lesson-in-game/`](lesson-in-game/README.md) | The working product: 4 Claude Code skills + the game engine |
+| [`lesson-in-game/examples/`](lesson-in-game/examples/) | Three ready-to-play content packs (🇬🇧 biology, 🇬🇧 economics, 🇺🇦 біологія) |
 | [`lesson-to-game-engine-concept.md`](lesson-to-game-engine-concept.md) | The full concept: architecture, research framing, design principles |
 | [`skill-set-plan.md`](skill-set-plan.md) | The build plan that turned the concept into this code |
 | [`assets/`](assets/) | The pixel art on this page (`node assets/generate.js` regenerates it) |

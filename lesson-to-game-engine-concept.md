@@ -2,7 +2,7 @@
 
 ### A framework-grounded skill set that lets any teacher, in any subject, turn a lesson into a live classroom game
 
-*Working name: **Ludus** — Latin for both "game" and "school." A concept document.*
+*Working name: **Lesson in Game**. A concept document.*
 
 ---
 

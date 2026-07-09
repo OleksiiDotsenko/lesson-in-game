@@ -1,4 +1,4 @@
-# Ludus Skill Set — Build Plan
+# Lesson in Game Skill Set — Build Plan
 
 *Prepared from [lesson-to-game-engine-concept.md](lesson-to-game-engine-concept.md). This is the blueprint for scaffolding; nothing here is built yet.*
 
@@ -6,12 +6,12 @@
 
 ## 1. Shape of the deliverable
 
-One **plugin named `ludus`** containing **four skills** plus a **bundled game engine** (the actual Node.js server + shells + browser client). The skills are the teacher-facing conversation layers (1–3 and 5 of the concept's architecture); the engine is layer 4 plus the runtime.
+One **plugin named `lesson-in-game`** containing **four skills** plus a **bundled game engine** (the actual Node.js server + shells + browser client). The skills are the teacher-facing conversation layers (1–3 and 5 of the concept's architecture); the engine is layer 4 plus the runtime.
 
 Why a plugin with four skills rather than one mega-skill: the teacher's touchpoints happen at different times (design the game Monday evening, review the pack Tuesday morning, run it in class Tuesday afternoon, read the report Tuesday evening). Each touchpoint needs its own entry phrase and its own focused context. This mirrors the structure that worked for `english-exam-coach` (router + task skills + progress tracker).
 
 ```
-ludus/                              # plugin root
+lesson-in-game/                              # plugin root
 ├── skills/
 │   ├── create-game/
 │   │   ├── SKILL.md                # interview script + design-engine logic
@@ -41,10 +41,10 @@ ludus/                              # plugin root
 │   ├── host/                       # cast view + control view (two host screens)
 │   └── bots.js                     # dummy players for preview/dry-run (doc §13.5)
 └── scripts/
-    └── ludus-runner.js             # start server w/ pack+shell, print URL + QR
+    └── lesson-in-game-runner.js             # start server w/ pack+shell, print URL + QR
 ```
 
-**Data home:** `~/ludus/` (override via `$LUDUS_HOME`) — `packs/`, `sessions/` (checkpoints + logs), `reports/`. The plugin directory stays read-only at runtime; first run copies `engine/` to the data home and does a one-time `npm install` (install-time internet is acceptable; run-time never needs it).
+**Data home:** `~/lesson-in-game/` (override via `$LESSON_IN_GAME_HOME`) — `packs/`, `sessions/` (checkpoints + logs), `reports/`. The plugin directory stays read-only at runtime; first run copies `engine/` to the data home and does a one-time `npm install` (install-time internet is acceptable; run-time never needs it).
 
 ---
 
@@ -52,10 +52,10 @@ ludus/                              # plugin root
 
 | Skill | What it does | Trigger phrases (for pushy descriptions) | Concept sections |
 |---|---|---|---|
-| **`ludus:create-game`** | The flagship. Runs the 6-question interview, maps objective verb → Bloom band → eligible primitives, selects + configures a shell, applies the rulebook, generates the content pack from the teacher's materials, then hands into the review gate. | "make a game for my lesson", "turn this lesson into a game", "gamify tomorrow's class on X", teacher pastes lesson notes and mentions a class | §5, §6, §8, §9, pack schema in §12 |
-| **`ludus:review-pack`** | Displays a generated pack item-by-item in teacher language; teacher edits, rejects, or approves items; flips `reviewStatus: draft → approved`. The runner refuses unapproved packs, so this is the enforcement point. | "review my photosynthesis pack", "show me the questions before we play", "approve the game content" | §8 (gate), §12 (schema), §16 (accuracy risk) |
-| **`ludus:run-session`** | Classroom runtime: first-run network checklist, mandatory preview/dry-run (bots), launch, QR code, live host controls, reconnect/late-joiner/crash-resume guidance, graceful end + log capture. | "start the game", "run the game for my class", "launch the session", "the students can't connect" | §12 (transport, runbook), §13 (lifecycle) |
-| **`ludus:game-report`** | Reads the session log and produces the one-page diagnostic: misconception map, silent-struggler flags, mastery by objective, engagement distribution — plus concrete "reteach these" seeds for the next `create-game` interview. | "how did the game go", "show me the report", "what should I reteach tomorrow" | §10, §13.6 |
+| **`lesson-in-game:create-game`** | The flagship. Runs the 6-question interview, maps objective verb → Bloom band → eligible primitives, selects + configures a shell, applies the rulebook, generates the content pack from the teacher's materials, then hands into the review gate. | "make a game for my lesson", "turn this lesson into a game", "gamify tomorrow's class on X", teacher pastes lesson notes and mentions a class | §5, §6, §8, §9, pack schema in §12 |
+| **`lesson-in-game:review-pack`** | Displays a generated pack item-by-item in teacher language; teacher edits, rejects, or approves items; flips `reviewStatus: draft → approved`. The runner refuses unapproved packs, so this is the enforcement point. | "review my photosynthesis pack", "show me the questions before we play", "approve the game content" | §8 (gate), §12 (schema), §16 (accuracy risk) |
+| **`lesson-in-game:run-session`** | Classroom runtime: first-run network checklist, mandatory preview/dry-run (bots), launch, QR code, live host controls, reconnect/late-joiner/crash-resume guidance, graceful end + log capture. | "start the game", "run the game for my class", "launch the session", "the students can't connect" | §12 (transport, runbook), §13 (lifecycle) |
+| **`lesson-in-game:game-report`** | Reads the session log and produces the one-page diagnostic: misconception map, silent-struggler flags, mastery by objective, engagement distribution — plus concrete "reteach these" seeds for the next `create-game` interview. | "how did the game go", "show me the report", "what should I reteach tomorrow" | §10, §13.6 |
 
 A separate router skill (like `english-exam-coach:exam-router`) is **deferred** — `create-game`'s description can carry the vague entry phrases ("I want to make my lesson fun") until triggering data says otherwise. Description optimization comes last anyway.
 
@@ -127,11 +127,11 @@ Baselines: same prompts with no skill. Assertions will check pack schema validit
 ## 7. Defaults adopted (flag if wrong) and open questions
 
 **Defaults:**
-- **Namespace/name:** `ludus` (the doc's working name). Skills: `create-game`, `review-pack`, `run-session`, `game-report`.
+- **Namespace/name:** `lesson-in-game` (the doc's working name). Skills: `create-game`, `review-pack`, `run-session`, `game-report`.
 - **Language:** skills mirror the teacher's language in conversation; packs carry `language` (`uk`/`en` first-class, per doc §16's Ukrainian-quality concern). Reference material written in English.
-- **Runtime:** Node 18+, Express + Socket.IO + `qrcode`; one-time online `npm install` into `~/ludus/engine`, fully offline afterwards.
+- **Runtime:** Node 18+, Express + Socket.IO + `qrcode`; one-time online `npm install` into `~/lesson-in-game/engine`, fully offline afterwards.
 - **Location:** built as a plugin directory in this project (portable, shareable with colleagues later — matches doc Phase 3 intent).
-- **Analytics storage:** JSON logs under `~/ludus/sessions/`, reports under `~/ludus/reports/`; nothing leaves the machine.
+- **Analytics storage:** JSON logs under `~/lesson-in-game/sessions/`, reports under `~/lesson-in-game/reports/`; nothing leaves the machine.
 
 **Open questions (non-blocking, revisit before Phase 2):**
 - Should `review-pack` stay a separate skill or fold into `create-game` once real usage shows how teachers actually re-enter? (Starting separate; cheap to merge.)

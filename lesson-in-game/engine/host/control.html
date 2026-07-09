@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lesson in Game — control</title>
+  <link rel="stylesheet" href="/host-assets/host.css">
+</head>
+<body>
+  <main class="control">
+    <h1>
+      🎛 Lesson in Game control
+      <span class="badge phase" id="k-phase">–</span>
+      <span class="badge" id="k-round">–</span>
+      <span class="badge" id="k-timer">–</span>
+      <span class="badge preview hidden" id="k-preview">PREVIEW</span>
+    </h1>
+    <p class="muted" id="k-pack"></p>
+
+    <div class="controls">
+      <button id="btn-start" class="primary">▶ Start</button>
+      <button id="btn-pause">⏸ Pause</button>
+      <button id="btn-resume" class="primary">▶ Resume</button>
+      <button id="btn-reveal">👁 Reveal answer</button>
+      <button id="btn-next" class="primary">⏭ Next</button>
+      <button id="btn-reset">↺ Reset round</button>
+      <button id="btn-end" class="danger">■ End</button>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Roster</h2>
+        <table>
+          <thead><tr><th></th><th>Name</th><th>Team</th><th>This round</th><th>Score</th><th>Accuracy</th><th></th></tr></thead>
+          <tbody id="roster"></tbody>
+        </table>
+      </div>
+      <div>
+        <div class="card">
+          <h2>Class</h2>
+          <div class="stat-row">
+            <div class="stat"><b id="s-online">–</b>online</div>
+            <div class="stat"><b id="s-answered">–</b>answered</div>
+            <div class="stat"><b id="s-ema">–</b>class accuracy</div>
+            <div class="stat"><b id="s-target">–</b>difficulty target</div>
+          </div>
+          <p class="muted" id="s-join"></p>
+        </div>
+        <div class="card" style="margin-top:1rem">
+          <h2>Current round <span class="muted">(students can't see this)</span></h2>
+          <div class="round-preview" id="round-preview">—</div>
+        </div>
+        <div class="card" style="margin-top:1rem">
+          <h2>Reflections</h2>
+          <ul class="reflections" id="reflections"></ul>
+        </div>
+        <div class="card hidden" style="margin-top:1rem" id="report-card">
+          <h2>Report</h2>
+          <p>Session finished. Files written to:</p>
+          <p id="report-link"></p>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/host-assets/control.js"></script>
+</body>
+</html>
