@@ -1,11 +1,11 @@
 {
   "name": "lesson-in-game-engine",
   "version": "0.1.0",
-  "description": "Teacher-hosted LAN classroom game engine (Lesson in Game lesson-to-game). Local-first: student data never leaves the teacher's machine.",
+  "description": "Lesson in Game — teacher-hosted LAN classroom game engine. Local-first: student data never leaves the teacher's machine.",
   "private": true,
   "engines": { "node": ">=18" },
   "scripts": {
-    "test": "node test/smoke.js",
+    "test": "node test/smoke.js && node test/deep.js",
     "setup": "node setup.js"
   },
   "dependencies": {

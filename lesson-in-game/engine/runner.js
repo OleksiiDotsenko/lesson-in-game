@@ -92,8 +92,11 @@ async function main() {
     resumeDir = path.resolve(args.resume);
     const cp = store.readCheckpoint(resumeDir);
     if (!cp) { console.error(`No checkpoint.json in ${resumeDir}`); process.exit(1); }
-    const packFile = findPack(cp.packId);
-    if (!packFile) { console.error(`Pack "${cp.packId}" not found in ${store.packsDir()} — cannot resume.`); process.exit(1); }
+    // Prefer the pack copy the session saved at launch; fall back to the packs dir.
+    const packFile = fs.existsSync(path.join(resumeDir, 'pack.json'))
+      ? path.join(resumeDir, 'pack.json')
+      : findPack(cp.packId);
+    if (!packFile) { console.error(`Pack "${cp.packId}" not found in the session dir or ${store.packsDir()} — cannot resume.`); process.exit(1); }
     pack = JSON.parse(fs.readFileSync(packFile, 'utf8'));
     args.preview = cp.preview;
   } else {
@@ -158,21 +161,23 @@ async function main() {
   if (resumeDir) console.log('  ↻ RESUMED — session restored paused; press Resume in the control view.');
   console.log('─'.repeat(64) + '\n');
 
+  let botProc = null;
   if (args.preview) {
     const count = args.bots || 8;
     console.log(`  Spawning ${count} bots in 2s… watch the cast view play out.\n`);
     setTimeout(() => {
-      const bot = fork(path.join(__dirname, 'bots.js'), [
+      botProc = fork(path.join(__dirname, 'bots.js'), [
         '--url', `http://localhost:${srv.port}`,
         '--room', srv.roomCode,
         '--count', String(count),
       ], { stdio: 'inherit' });
-      bot.on('error', (e) => console.error('bots failed:', e.message));
+      botProc.on('error', (e) => console.error('bots failed:', e.message));
     }, 2000);
   }
 
   process.on('SIGINT', async () => {
     console.log('\nCheckpointing and shutting down…');
+    if (botProc) { try { botProc.kill(); } catch {} }
     try { srv.session.checkpoint(); } catch {}
     if (srv.session.phase !== 'ended') {
       console.log(`Resume later with:\n  node ${__filename} --resume "${srv.sessionDir}"`);

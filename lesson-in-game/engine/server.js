@@ -79,6 +79,9 @@ async function createServer(opts) {
     sessionDir = store.newSessionDir(pack.packId, { preview });
     roomCode = makeRoomCode();
     session = new Session({ io, pack, shell, settings, sessionDir, roomCode, hostKey, preview });
+    // The session carries its own copy of the pack, so a crash-resume never
+    // depends on where the teacher launched the original file from.
+    require('fs').writeFileSync(path.join(sessionDir, 'pack.json'), JSON.stringify(pack, null, 2));
   }
 
   // ── static pages ──

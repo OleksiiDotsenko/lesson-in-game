@@ -134,7 +134,7 @@ class Session {
     return {
       ok: true, playerId: p.id, resumeToken: p.id, name: p.name,
       team: { id: team.id, name: team.name, color: team.color },
-      phase: this.phase, lang: this.lang, pending: p.pending,
+      phase: this.phase, lang: this.lang, pending: p.pending, score: p.score,
     };
   }
 
@@ -329,6 +329,9 @@ class Session {
     this.recomputeTeamScores();
     this.emitLobby();
     this.pushDashboard();
+    // If the kicked student was the only one yet to answer, don't leave the
+    // round hanging until the timer.
+    this.maybeEndRoundAllAnswered();
   }
 
   // ── rounds ─────────────────────────────────────────────────────────────────
@@ -430,6 +433,10 @@ class Session {
     this.round.deadline = Date.now() + (this.round.remainingMs ?? 0);
     this.round.remainingMs = null;
     this.armRoundTimer(Math.max(0, this.round.deadline - Date.now()));
+    // Anyone who (re)connected while paused — including the whole class after a
+    // crash-restore — has no question on screen. Re-send with the fresh
+    // deadline; the client preserves already-answered state.
+    for (const p of this.players.values()) this.sendRoundStartTo(p);
     store.appendLog(this.sessionDir, 'phase', { phase: this.phase });
     this.broadcastState();
     this.pushDashboard();
@@ -603,8 +610,11 @@ class Session {
   }
 
   sendSnapshotTo(p) {
-    // Bring a (re)joining client up to date with the current phase.
-    if (this.phase === PHASES.ROUND_ACTIVE && this.round && !p.pending) this.sendRoundStartTo(p);
+    // Bring a (re)joining client up to date with the current phase. PAUSED also
+    // sends the question so it sits ready (frozen) under the pause overlay.
+    if ([PHASES.ROUND_ACTIVE, PHASES.PAUSED].includes(this.phase) && this.round && !p.pending) {
+      this.sendRoundStartTo(p);
+    }
     if (this.phase === PHASES.ROUND_REVIEW && this.lastReveal && p.socketId) {
       this.io.to(p.socketId).emit(EVENTS.ROUND_END, this.lastReveal);
     }

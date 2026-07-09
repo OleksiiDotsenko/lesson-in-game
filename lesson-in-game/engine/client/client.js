@@ -44,7 +44,7 @@ function doJoin(room, name, token) {
       return;
     }
     joined = true;
-    me = { playerId: res.playerId, token: res.resumeToken, name: res.name, team: res.team, pending: res.pending };
+    me = { playerId: res.playerId, token: res.resumeToken, name: res.name, team: res.team, pending: res.pending, score: res.score || 0 };
     saveIdentity({ room, token: res.resumeToken, name: res.name });
     setLang(res.lang);
     $('team-badge').textContent = res.team.name + ' · ' + res.name;
@@ -79,7 +79,11 @@ socket.on('lobby', (data) => {
 
 // ── rounds ──
 socket.on('roundStart', (r) => {
-  current = { round: r, answered: !!r.answered, lastFeedback: null, deadline: r.deadline, roundIndex: r.roundIndex, total: r.total };
+  // The server may re-send the current round (resume after a pause, reconnect).
+  // Keep our feedback for it so the strip doesn't blank out mid-round.
+  const sameRound = current.round && r.roundIndex === current.roundIndex && r.answered;
+  const keepFeedback = sameRound ? current.lastFeedback : null;
+  current = { round: r, answered: !!r.answered, lastFeedback: keepFeedback, deadline: r.deadline, roundIndex: r.roundIndex, total: r.total };
   $('pause-overlay').classList.add('hidden');
   $('q-round').textContent = `${t('round')} ${r.roundIndex}/${r.total}`;
   $('q-team').textContent = me.team ? me.team.name : '';
@@ -128,6 +132,7 @@ socket.on('roundStart', (r) => {
   }
   show('question');
   startTimer();
+  if (current.lastFeedback) renderFeedback(current.lastFeedback);
   updateFooter();
 });
 
@@ -155,6 +160,12 @@ function lockUi() {
 
 socket.on('feedback', (f) => {
   current.lastFeedback = f;
+  me.score = f.score;
+  renderFeedback(f);
+  updateFooter();
+});
+
+function renderFeedback(f) {
   $('q-locked').classList.add('hidden');
   const el = $('q-feedback');
   const cls = f.correct ? 'ok' : f.partial > 0 ? 'half' : 'no';
@@ -162,8 +173,7 @@ socket.on('feedback', (f) => {
   el.className = 'feedback ' + cls;
   el.innerHTML = msg + `<span class="delta">+${f.delta} ${t('points')}${f.streak > 1 ? ` · ${t('streak')} ×${f.streak}` : ''}</span>`;
   el.classList.remove('hidden');
-  updateFooter(f);
-});
+}
 
 socket.on('roundEnd', (r) => {
   stopTimer();
@@ -238,9 +248,8 @@ function renderTeams(el, teams) {
   }
 }
 
-function updateFooter(f) {
-  const score = f ? f.score : 0;
-  $('progress-footer').textContent = me.name ? `${t('you')}: ${me.name} · ${score} ${t('points')}` : '';
+function updateFooter() {
+  $('progress-footer').textContent = me.name ? `${t('you')}: ${me.name} · ${me.score || 0} ${t('points')}` : '';
 }
 
 function startTimer() {
