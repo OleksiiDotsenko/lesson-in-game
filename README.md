@@ -108,4 +108,4 @@ Student answers **never leave the teacher's laptop**. There is no cloud, no stud
 
 <p align="center"><img src="assets/divider.svg" alt="" width="100%"></p>
 
-<p align="center">made with 🧡 for teachers · student data stays in the classroom · <a href="lesson-to-game-engine-concept.md">read the full concept</a></p>
+<p align="center">made with 🧡 for teachers · student data stays in the classroom · <a href="LICENSE">MIT license</a> · <a href="lesson-to-game-engine-concept.md">read the full concept</a></p>

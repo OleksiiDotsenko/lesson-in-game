@@ -2,6 +2,7 @@
   "name": "lesson-in-game-engine",
   "version": "0.1.0",
   "description": "Lesson in Game — teacher-hosted LAN classroom game engine. Local-first: student data never leaves the teacher's machine.",
+  "license": "MIT",
   "private": true,
   "engines": { "node": ">=18" },
   "scripts": {
